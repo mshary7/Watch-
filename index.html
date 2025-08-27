@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صحتك - المنصة الصحية الذكية | مستقبل الرعاية الطبية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .health-gradient {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .medical-gradient {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .innovation-gradient {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        
+        .floating-card {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-15px) rotate(1deg); }
+            66% { transform: translateY(-5px) rotate(-1deg); }
+        }
+        
+        .watch-3d {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            perspective: 1000px;
+            position: relative;
+        }
+        
+        .watch-body {
+            width: 200px;
+            height: 240px;
+            background: linear-gradient(145deg, #2c3e50, #34495e);
+            border-radius: 40px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: watchFloat 4s ease-in-out infinite;
+            margin: 0 auto;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                inset 0 2px 10px rgba(255, 255, 255, 0.1);
+        }
+        
+        .watch-screen {
+            width: 160px;
+            height: 160px;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            border-radius: 30px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            overflow: hidden;
+        }
+        
+        .watch-screen::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: screenGlow 3s ease-in-out infinite;
+        }
+        
+        .watch-band {
+            width: 40px;
+            height: 100px;
+            background: linear-gradient(145deg, #34495e, #2c3e50);
+            border-radius: 20px;
+            position: absolute;
+        }
+        
+        .watch-band.top {
+            top: -80px;
+            left: 80px;
+        }
+        
+        .watch-band.bottom {
+            bottom: -80px;
+            left: 80px;
+        }
+        
+        @keyframes watchFloat {
+            0%, 100% { transform: rotateY(-15deg) rotateX(10deg) translateY(0px); }
+            50% { transform: rotateY(15deg) rotateX(-5deg) translateY(-10px); }
+        }
+        
+        @keyframes screenGlow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+            border-radius: 16px;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: #3b82f6;
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        
+        .btn-secondary:hover::before {
+            width: 100%;
+        }
+        
+        .btn-secondary:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .feature-icon:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .stats-counter {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .presentation-slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide-bg-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .slide-bg-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .slide-bg-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .slide-bg-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .slide-bg-5 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid #3b82f6;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #3b82f6; }
+        }
+
+        /* أنماط المساعد الطبي */
+        .medical-assistant-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            animation: robotPulse 2s infinite;
+        }
+
+        .medical-assistant-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.6);
+        }
+
+        .medical-assistant-btn .robot-icon {
+            font-size: 2rem;
+            color: white;
+        }
+
+        @keyframes robotPulse {
+            0%, 100% { box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4); }
+            50% { box-shadow: 0 8px 25px rgba(16, 185, 129, 0.8); }
+        }
+
+        .chat-container {
+            max-width: 800px;
+            margin: 0 auto;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+
+        .message {
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .message.user {
+            text-align: left;
+        }
+
+        .message.assistant {
+            text-align: right;
+        }
+
+        .message-bubble {
+            display: inline-block;
+            max-width: 80%;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            line-height: 1.6;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .message.user .message-bubble {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message.assistant .message-bubble {
+            background: white;
+            color: #374151;
+            border-bottom-right-radius: 5px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            font-size: 1.2rem;
+        }
+
+        .message.user .message-avatar {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+        }
+
+        .message.assistant .message-avatar {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .chat-input-container {
+            padding: 1.5rem;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .chat-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: white;
+            border-radius: 20px;
+            border-bottom-right-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            animation: typingDot 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typingDot {
+            0%, 80%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        /* تحسينات الجوال */
+        @media (max-width: 768px) {
+            .stats-counter {
+                font-size: 2rem;
+            }
+            
+            .watch-3d {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .watch-body {
+                width: 160px;
+                height: 200px;
+            }
+            
+            .watch-screen {
+                width: 120px;
+                height: 120px;
+                top: 15px;
+                left: 20px;
+            }
+            
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .presentation-slide {
+                padding: 1rem;
+            }
+            
+            .typewriter {
+                font-size: 2rem;
+            }
+
+            .medical-assistant-btn {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                left: 20px;
+            }
+
+            .medical-assistant-btn .robot-icon {
+                font-size: 1.5rem;
+            }
+
+            .chat-container {
+                height: 80vh;
+                margin: 1rem;
+            }
+
+            .message-bubble {
+                max-width: 90%;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-counter {
+                font-size: 1.5rem;
+            }
+            
+            .feature-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+            
+            .watch-3d {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .watch-body {
+                width: 140px;
+                height: 170px;
+            }
+            
+            .watch-screen {
+                width: 100px;
+                height: 100px;
+                top: 12px;
+                left: 20px;
+            }
+
+            .medical-assistant-btn {
+                width: 55px;
+                height: 55px;
+            }
+
+            .medical-assistant-btn .robot-icon {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- زر المساعد الطبي العائم -->
+    <div class="medical-assistant-btn" onclick="showMedicalAssistant()" title="المساعد الطبي">
+        <span class="robot-icon">🤖</span>
+    </div>
+
+    <!-- الصفحة الرئيسية -->
+    <div id="homePage" class="min-h-screen gradient-bg">
+        <!-- الهيدر -->
+        <nav class="p-4 md:p-6 relative z-10">
+            <div class="flex justify-between items-center max-w-7xl mx-auto">
+                <div class="flex items-center text-white">
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center ml-3 md:ml-4 pulse-animation">
+                        <span class="text-2xl md:text-3xl">🏥</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-bold">صحتك</h1>
+                        <p class="text-sm md:text-lg opacity-90">المنصة الصحية الذكية</p>
+                    </div>
+                </div>
+                
+                <!-- قائمة سطح المكتب -->
+                <div class="hidden md:flex items-center gap-6">
+                    <button onclick="showSection('features')" class="text-white hover:text-yellow-300 transition-colors font-semibold">المميزات</button>
+                    <button onclick="showSection('watch')" class="text-white hover:text-yellow-300 transition-colors font-semibold">الساعة الذكية</button>
+                    <button onclick="showSection('presentation')" class="text-white hover:text-yellow-300 transition-colors font-semibold">العرض التقديمي</button>
+                    <button onclick="showSection('team')" class="text-white hover:text-yellow-300 transition-colors font-semibold">الفريق</button>
+                    <button onclick="showMedicalAssistant()" class="text-white hover:text-yellow-300 transition-colors font-semibold">🤖 المساعد الطبي</button>
+                </div>
+                
+                <!-- أزرار سطح المكتب -->
+                <div class="hidden md:flex gap-4">
+                    <button onclick="showLogin()" class="btn-secondary bg-white bg-opacity-20 border-white text-white hover:bg-white hover:text-purple-600">تسجيل الدخول</button>
+                    <button onclick="showRegister()" class="btn-primary bg-white bg-opacity-20 text-white hover:bg-white hover:text-purple-600">إنشاء حساب</button>
+                </div>
+                
+                <!-- قائمة الجوال -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-white text-2xl">☰</button>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- قائمة الجوال المنبثقة -->
+        <div id="mobileMenu" class="fixed top-0 right-[-100%] w-full h-screen bg-white bg-opacity-95 backdrop-blur-lg transition-all duration-300 z-50 p-6">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-800">القائمة</h2>
+                <button onclick="toggleMobileMenu()" class="text-gray-800 text-2xl">✕</button>
+            </div>
+            <div class="space-y-6">
+                <button onclick="showSection('features'); toggleMobileMenu()" class="w-full text-right p-4 text-lg font-semibold text-gray-800 hover:bg-blue-50 rounded-lg transition-colors">المميزات</button>
+                <button onclick="showSection('watch'); toggleMobileMenu()" class="w-full text-right p-4 text-lg font-semibold text-gray-800 hover:bg-blue-50 rounded-lg transition-colors">الساعة الذكية</button>
+                <button onclick="showSection('presentation'); toggleMobileMenu()" class="w-full text-right p-4 text-lg font-semibold text-gray-800 hover:bg-blue-50 rounded-lg transition-colors">العرض التقديمي</button>
+                <button onclick="showSection('team'); toggleMobileMenu()" class="w-full text-right p-4 text-lg font-semibold text-gray-800 hover:bg-blue-50 rounded-lg transition-colors">الفريق</button>
+                <button onclick="showMedicalAssistant(); toggleMobileMenu()" class="w-full text-right p-4 text-lg font-semibold text-gray-800 hover:bg-blue-50 rounded-lg transition-colors">🤖 المساعد الطبي</button>
+                <div class="pt-6 border-t space-y-4">
+                    <button onclick="showLogin(); toggleMobileMenu()" class="w-full btn-secondary">تسجيل الدخول</button>
+                    <button onclick="showRegister(); toggleMobileMenu()" class="w-full btn-primary">إنشاء حساب</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- المحتوى الرئيسي -->
+        <div class="min-h-screen -mt-16 md:-mt-20">
+            <!-- القسم الأول: العنوان الرئيسي والأزرار -->
+            <div class="flex items-center justify-center min-h-screen">
+                <div class="text-center text-white max-w-6xl mx-auto p-4 md:p-8">
+                    <div class="floating-card mb-8 md:mb-12">
+                        <h1 class="text-4xl md:text-6xl lg:text-8xl font-bold mb-6 md:mb-8">مستقبلك الصحي بين يديك</h1>
+                        <p class="text-lg md:text-2xl lg:text-3xl mb-8 md:mb-12 opacity-90">منصة متكاملة تجمع المريض والطبيب والمستشفى في مكان واحد مع الذكاء الاصطناعي</p>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-8 mb-12 md:mb-16">
+                        <button onclick="showLogin()" class="btn-primary text-lg md:text-xl px-8 md:px-12 py-4 md:py-6 shadow-2xl">🚀 ابدأ رحلتك الصحية</button>
+                        <button onclick="showSection('watch')" class="btn-secondary bg-white bg-opacity-20 border-white text-white hover:bg-white hover:text-purple-600 text-lg md:text-xl px-8 md:px-12 py-4 md:py-6">⌚ شاهد الساعة الذكية</button>
+                    </div>
+                    
+                    <!-- أزرار التنقل السريع -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                        <button onclick="showSection('features')" class="glass-card rounded-xl p-4 md:p-6 text-center hover:transform hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+                            <div class="text-2xl md:text-3xl mb-2 md:mb-3">✨</div>
+                            <h3 class="font-bold text-gray-800 text-sm md:text-base">المميزات</h3>
+                            <p class="text-gray-600 text-xs md:text-sm">اكتشف الإمكانيات</p>
+                        </button>
+                        
+                        <button onclick="showSection('watch')" class="glass-card rounded-xl p-4 md:p-6 text-center hover:transform hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+                            <div class="text-2xl md:text-3xl mb-2 md:mb-3">⌚</div>
+                            <h3 class="font-bold text-gray-800 text-sm md:text-base">الساعة الذكية</h3>
+                            <p class="text-gray-600 text-xs md:text-sm">تقنية متطورة</p>
+                        </button>
+                        
+                        <button onclick="showSection('presentation')" class="glass-card rounded-xl p-4 md:p-6 text-center hover:transform hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+                            <div class="text-2xl md:text-3xl mb-2 md:mb-3">📊</div>
+                            <h3 class="font-bold text-gray-800 text-sm md:text-base">العرض التقديمي</h3>
+                            <p class="text-gray-600 text-xs md:text-sm">شاهد الفكرة</p>
+                        </button>
+                        
+                        <button onclick="showMedicalAssistant()" class="glass-card rounded-xl p-4 md:p-6 text-center hover:transform hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+                            <div class="text-2xl md:text-3xl mb-2 md:mb-3">🤖</div>
+                            <h3 class="font-bold text-gray-800 text-sm md:text-base">المساعد الطبي</h3>
+                            <p class="text-gray-600 text-xs md:text-sm">ذكاء اصطناعي</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- القسم الثاني: الخدمات الرئيسية -->
+            <div class="py-12 md:py-20">
+                <div class="max-w-7xl mx-auto p-4 md:p-8">
+                    <div class="text-center mb-12 md:mb-20">
+                        <h2 class="text-3xl md:text-5xl font-bold mb-6 md:mb-8 text-white">خدماتنا الصحية المتكاملة</h2>
+                        <p class="text-lg md:text-2xl text-white opacity-90">كل ما تحتاجه لصحة أفضل في مكان واحد</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                        <div class="card-hover rounded-2xl p-6 md:p-8 cursor-pointer" onclick="showLogin()">
+                            <div class="feature-icon bg-gradient-to-br from-blue-500 to-blue-600 mb-4 md:mb-6">
+                                <span class="text-white">📋</span>
+                            </div>
+                            <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-gray-800">ملفك الصحي</h3>
+                            <p class="text-gray-600 mb-3 md:mb-4 text-sm md:text-base">تتبع حالتك الصحية بالذكاء الاصطناعي</p>
+                            <div class="text-blue-600 font-semibold text-sm md:text-base">ابدأ الآن ←</div>
+                        </div>
+                        
+                        <div class="card-hover rounded-2xl p-6 md:p-8 cursor-pointer" onclick="showLogin()">
+                            <div class="feature-icon bg-gradient-to-br from-green-500 to-green-600 mb-4 md:mb-6">
+                                <span class="text-white">👨‍⚕️</span>
+                            </div>
+                            <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-gray-800">الاستشارات الطبية</h3>
+                            <p class="text-gray-600 mb-3 md:mb-4 text-sm md:text-base">تواصل مع أفضل الأطباء عن بُعد</p>
+                            <div class="text-green-600 font-semibold text-sm md:text-base">احجز الآن ←</div>
+                        </div>
+                        
+                        <div class="card-hover rounded-2xl p-6 md:p-8 cursor-pointer" onclick="showLogin()">
+                            <div class="feature-icon bg-gradient-to-br from-purple-500 to-purple-600 mb-4 md:mb-6">
+                                <span class="text-white">🛒</span>
+                            </div>
+                            <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-gray-800">المتجر الصحي</h3>
+                            <p class="text-gray-600 mb-3 md:mb-4 text-sm md:text-base">أدوية ومكملات بأفضل الأسعار</p>
+                            <div class="text-purple-600 font-semibold text-sm md:text-base">تسوق الآن ←</div>
+                        </div>
+                        
+                        <div class="card-hover rounded-2xl p-6 md:p-8 cursor-pointer" onclick="showEmergency()">
+                            <div class="feature-icon bg-gradient-to-br from-red-500 to-red-600 mb-4 md:mb-6">
+                                <span class="text-white">🚨</span>
+                            </div>
+                            <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-gray-800">الطوارئ</h3>
+                            <p class="text-gray-600 mb-3 md:mb-4 text-sm md:text-base">مساعدة فورية مع تحديد الموقع</p>
+                            <div class="text-red-600 font-semibold text-sm md:text-base">طوارئ ←</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة المساعد الطبي -->
+    <div id="medicalAssistantPage" class="hidden min-h-screen medical-gradient py-8">
+        <div class="max-w-6xl mx-auto p-4">
+            <!-- عنوان الصفحة -->
+            <div class="text-center mb-8">
+                <button onclick="goHome()" class="absolute top-8 right-8 text-gray-600 hover:text-gray-800 text-2xl">✕</button>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-800">🤖 المساعد الطبي الذكي</h1>
+                <p class="text-lg md:text-xl text-gray-600">مساعدك الشخصي للرعاية الصحية على مدار الساعة</p>
+            </div>
+
+            <!-- واجهة المحادثة -->
+            <div class="chat-container">
+                <!-- رأس المحادثة -->
+                <div class="chat-header">
+                    <div class="flex items-center justify-center">
+                        <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center ml-4">
+                            <span class="text-3xl">🤖</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">المساعد الطبي</h2>
+                            <p class="text-sm opacity-90">متصل الآن • جاهز للمساعدة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- منطقة الرسائل -->
+                <div class="chat-messages" id="chatMessages">
+                    <!-- رسالة المريض الأولى -->
+                    <div class="message user">
+                        <div class="flex items-end">
+                            <div class="message-avatar">👤</div>
+                            <div class="message-bubble">
+                                انت لماذا مساعد طبي؟
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- رد المساعد الطبي -->
+                    <div class="message assistant">
+                        <div class="flex items-end justify-end">
+                            <div class="message-bubble">
+                                <div class="mb-4">
+                                    <h3 class="font-bold text-lg mb-2 text-green-600">✨ الفكرة المدمجة:</h3>
+                                    <p class="font-semibold text-blue-600">"الساعة الطبية الوطنية + المساعد الطبي الذكي"</p>
+                                </div>
+
+                                <div class="mb-4">
+                                    <h4 class="font-bold text-base mb-2">🔹 1. الساعة الطبية الوطنية:</h4>
+                                    <ul class="text-sm space-y-1 mr-4">
+                                        <li>• جهاز يمكن ارتداؤه يقيس المؤشرات الحيوية (الضغط، النبض، الأكسجين، النوم، النشاط) بشكل لحظي.</li>
+                                        <li>• يرسل البيانات إلى المنصة الوطنية ويربطها بين المريض، الطبيب، والجهات الصحية.</li>
+                                        <li>• يحذر المستخدم والأطباء عند وجود أي خلل أو خطر محتمل.</li>
+                                        <li>• يدعم الطب الاستباقي بحيث يتم التنبؤ بالمشاكل الصحية قبل وقوعها.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="mb-4">
+                                    <h4 class="font-bold text-base mb-2">🔹 2. المساعد الطبي الذكي:</h4>
+                                    <ul class="text-sm space-y-1 mr-4">
+                                        <li>• عبارة عن روبوت ذكي داخل الموقع (زر منفصل اسمه "المساعد الطبي").</li>
+                                        <li>• يعتمد على الذكاء الاصطناعي لتحليل بيانات الساعة الطبية.</li>
+                                        <li>• يجاوب على أسئلة المريض (مثلاً: "ليش ضغطي ارتفع؟" أو "متى آخد الدواء؟").</li>
+                                        <li>• يساعد الطبيب في إعطاء توصيات علاجية مبدئية مبنية على البيانات.</li>
+                                        <li>• ينبه المريض بالمواعيد + الأدوية + التحذيرات.</li>
+                                        <li>• يكون كأنه طبيب رقمي شخصي يرافق المريض 24/7.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="mb-4">
+                                    <h4 class="font-bold text-base mb-2 text-green-600">🎯 النتيجة:</h4>
+                                    <ul class="text-sm space-y-1 mr-4">
+                                        <li>• ساعة ذكية تلتقط البيانات الطبية.</li>
+                                        <li>• منصة وطنية تعرض البيانات للأطباء والجهات الحكومية.</li>
+                                        <li>• مساعد طبي ذكي يحول البيانات إلى قرارات وتوصيات لحظية.</li>
+                                    </ul>
+                                </div>
+
+                                <p class="text-sm text-gray-600 mt-4">
+                                    بهذا الشكل يطلع المساعد الطبي كأنه يشرح نفسه بشكل ذكي وأنيق أول ما يفتح المستخدم صفحة المساعد 👌
+                                </p>
+                            </div>
+                            <div class="message-avatar">🤖</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- منطقة إدخال الرسائل -->
+                <div class="chat-input-container">
+                    <div class="flex gap-3">
+                        <input 
+                            type="text" 
+                            class="chat-input flex-1" 
+                            placeholder="اكتب سؤالك الطبي هنا..."
+                            id="chatInput"
+                            onkeypress="if(event.key==='Enter') sendMessage()"
+                        >
+                        <button 
+                            onclick="sendMessage()" 
+                            class="btn-primary px-6 py-3 rounded-full"
+                        >
+                            إرسال
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ميزات إضافية -->
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card rounded-xl p-6 text-center">
+                    <div class="text-3xl mb-3">⚡</div>
+                    <h3 class="font-bold text-lg mb-2">استجابة فورية</h3>
+                    <p class="text-gray-600 text-sm">إجابات سريعة ودقيقة على استفساراتك الطبية</p>
+                </div>
+                
+                <div class="glass-card rounded-xl p-6 text-center">
+                    <div class="text-3xl mb-3">🧠</div>
+                    <h3 class="font-bold text-lg mb-2">ذكاء اصطناعي متطور</h3>
+                    <p class="text-gray-600 text-sm">تحليل ذكي للبيانات الصحية والأعراض</p>
+                </div>
+                
+                <div class="glass-card rounded-xl p-6 text-center">
+                    <div class="text-3xl mb-3">🔒</div>
+                    <h3 class="font-bold text-lg mb-2">خصوصية وأمان</h3>
+                    <p class="text-gray-600 text-sm">حماية كاملة لبياناتك الصحية الشخصية</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم المميزات -->
+    <div id="featuresSection" class="hidden min-h-screen bg-white py-12 md:py-20">
+        <div class="max-w-7xl mx-auto p-4 md:p-8">
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 md:mb-8 text-gray-800">مميزات المنصة الصحية الذكية</h2>
+                <p class="text-lg md:text-2xl text-gray-600">تقنيات متطورة لرعاية صحية أفضل</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-12 md:mb-20">
+                <div class="text-center">
+                    <div class="feature-icon bg-gradient-to-br from-red-500 to-pink-500 mb-4 md:mb-6">
+                        <span class="text-white">🔴</span>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4">زر طوارئ SOS</h3>
+                    <p class="text-gray-600 text-sm md:text-base">إرسال فوري للموقع والبيانات الطبية لأقرب مستشفى مع تنبيه الأطباء</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="feature-icon bg-gradient-to-br from-blue-500 to-cyan-500 mb-4 md:mb-6">
+                        <span class="text-white">📊</span>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4">لوحات تحكم ذكية</h3>
+                    <p class="text-gray-600 text-sm md:text-base">واجهات متخصصة للمرضى والأطباء والمستشفيات مع تحليلات متقدمة</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="feature-icon bg-gradient-to-br from-purple-500 to-indigo-500 mb-4 md:mb-6">
+                        <span class="text-white">🤖</span>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4">ذكاء اصطناعي طبي</h3>
+                    <p class="text-gray-600 text-sm md:text-base">تحليل البيانات الصحية وإعطاء نصائح شخصية وتنبيهات مبكرة</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="feature-icon bg-gradient-to-br from-yellow-500 to-orange-500 mb-4 md:mb-6">
+                        <span class="text-white">🏆</span>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4">نظام النقاط والمكافآت</h3>
+                    <p class="text-gray-600 text-sm md:text-base">تشجيع السلوك الصحي من خلال نقاط قابلة للاستبدال بخصومات ومكافآت</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="feature-icon bg-gradient-to-br from-green-500 to-teal-500 mb-4 md:mb-6">
+                        <span class="text-white">🛒</span>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4">متجر صحي متكامل</h3>
+                    <p class="text-gray-600 text-sm md:text-base">أدوية ومكملات ومنتجات صحية مع توصيل سريع وضمان الجودة</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="feature-icon bg-gradient-to-br from-pink-500 to-rose-500 mb-4 md:mb-6">
+                        <span class="text-white">👥</span>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4">مجتمع صحي داعم</h3>
+                    <p class="text-gray-600 text-sm md:text-base">مجموعات دعم ومشاركة التجارب مع إشراف طبي متخصص</p>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button onclick="goHome()" class="btn-primary text-lg md:text-xl px-6 md:px-8 py-3 md:py-4">العودة للرئيسية</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم الساعة الذكية -->
+    <div id="watchSection" class="hidden min-h-screen innovation-gradient py-12 md:py-20">
+        <div class="max-w-7xl mx-auto p-4 md:p-8">
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 md:mb-8 text-gray-800">الساعة الطبية الذكية</h2>
+                <p class="text-lg md:text-2xl text-gray-600">ابتكار ثوري في عالم الرعاية الصحية</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center mb-12 md:mb-20">
+                <div class="order-2 lg:order-1">
+                    <div class="watch-3d">
+                        <div class="watch-body">
+                            <div class="watch-band top"></div>
+                            <div class="watch-screen">
+                                <div class="text-xl md:text-2xl mb-2">❤️ 72</div>
+                                <div class="text-xs md:text-sm">BPM</div>
+                                <div class="text-xs mt-2 opacity-75">🩸 120/80</div>
+                            </div>
+                            <div class="watch-band bottom"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-1 lg:order-2 space-y-6 md:space-y-8">
+                    <div class="glass-card rounded-2xl p-6 md:p-8">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-gray-800">مميزات الساعة الثورية</h3>
+                        <div class="space-y-4 md:space-y-6">
+                            <div class="flex items-start">
+                                <span class="text-xl md:text-2xl ml-3 md:ml-4">📊</span>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg mb-2">قياسات لحظية دقيقة</h4>
+                                    <p class="text-gray-600 text-sm md:text-base">متابعة النبض، الضغط، السكر، الأكسجين، والحرارة بدقة طبية عالية</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <span class="text-xl md:text-2xl ml-3 md:ml-4">🤖</span>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg mb-2">ذكاء اصطناعي مدمج</h4>
+                                    <p class="text-gray-600 text-sm md:text-base">تحليل ذكي للبيانات مع نصائح شخصية وتنبيهات مبكرة للمخاطر الصحية</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <span class="text-xl md:text-2xl ml-3 md:ml-4">🚨</span>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg mb-2">نظام طوارئ متطور</h4>
+                                    <p class="text-gray-600 text-sm md:text-base">كشف تلقائي للحالات الطارئة مع إرسال فوري للموقع والبيانات الطبية</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <span class="text-xl md:text-2xl ml-3 md:ml-4">💉</span>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg mb-2 text-red-600">الابتكار الأهم: الحقن الذكي</h4>
+                                    <p class="text-gray-600 text-sm md:text-base">خزان صغير للأدوية مع إمكانية الحقن التلقائي أو اليدوي في الحالات الطارئة</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-12 md:mb-16">
+                <div class="glass-card rounded-2xl p-4 md:p-6 text-center">
+                    <div class="text-2xl md:text-4xl mb-3 md:mb-4">🔋</div>
+                    <h4 class="font-bold text-base md:text-lg mb-2">بطارية 48 ساعة</h4>
+                    <p class="text-gray-600 text-xs md:text-sm">شحن مغناطيسي سريع</p>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-4 md:p-6 text-center">
+                    <div class="text-2xl md:text-4xl mb-3 md:mb-4">📡</div>
+                    <h4 class="font-bold text-base md:text-lg mb-2">اتصال 5G</h4>
+                    <p class="text-gray-600 text-xs md:text-sm">بلوتوث + إنترنت eSIM</p>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-4 md:p-6 text-center">
+                    <div class="text-2xl md:text-4xl mb-3 md:mb-4">💧</div>
+                    <h4 class="font-bold text-base md:text-lg mb-2">مقاوم للماء</h4>
+                    <p class="text-gray-600 text-xs md:text-sm">حماية IP68 كاملة</p>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-4 md:p-6 text-center">
+                    <div class="text-2xl md:text-4xl mb-3 md:mb-4">🏥</div>
+                    <h4 class="font-bold text-base md:text-lg mb-2">معتمد طبياً</h4>
+                    <p class="text-gray-600 text-xs md:text-sm">مواد طبية آمنة</p>
+                </div>
+            </div>
+            
+            <div class="text-center space-y-4 md:space-y-0 md:space-x-4">
+                <button onclick="goHome()" class="w-full md:w-auto btn-primary text-lg md:text-xl px-6 md:px-8 py-3 md:py-4 md:ml-4">العودة للرئيسية</button>
+                <button onclick="showWatchDemo()" class="w-full md:w-auto btn-secondary text-lg md:text-xl px-6 md:px-8 py-3 md:py-4">جرب الساعة الآن</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم العرض التقديمي -->
+    <div id="presentationSection" class="hidden">
+        <!-- الشريحة 1: الغلاف -->
+        <div id="slide1" class="presentation-slide slide-bg-1">
+            <div class="text-center text-white max-w-4xl">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 md:mb-8">🚀 المنصة الصحية الذكية</h1>
+                <h2 class="text-2xl md:text-3xl mb-8 md:mb-12">مستقبل الرعاية الطبية</h2>
+                <div class="glass-card rounded-2xl p-6 md:p-8 mb-6 md:mb-8">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-gray-800">فريق المشروع</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 text-gray-700">
+                        <div>
+                            <div class="font-bold text-base md:text-lg">👨‍💻 مشاري ناجي</div>
+                            <div class="text-sm md:text-base">القائد والمبرمج والمصمم</div>
+                        </div>
+                        <div>
+                            <div class="font-bold text-base md:text-lg">💡 فراس عبدالسلام</div>
+                            <div class="text-sm md:text-base">مطور الأفكار والحلول</div>
+                        </div>
+                        <div>
+                            <div class="font-bold text-base md:text-lg">✍️ مازن خورشيد</div>
+                            <div class="text-sm md:text-base">كاتب ومحتوى</div>
+                        </div>
+                        <div>
+                            <div class="font-bold text-base md:text-lg">🤝 فريق الدعم</div>
+                            <div class="text-sm md:text-base">المساهمون الآخرون</div>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="nextSlide()" class="btn-primary text-lg md:text-xl px-6 md:px-8 py-3 md:py-4">التالي ←</button>
+            </div>
+        </div>
+        
+        <!-- الشريحة 2: المقدمة -->
+        <div id="slide2" class="presentation-slide slide-bg-2 hidden">
+            <div class="text-center text-white max-w-4xl">
+                <h1 class="text-3xl md:text-5xl font-bold mb-8 md:mb-12">المقدمة</h1>
+                <div class="glass-card rounded-2xl p-8 md:p-12 text-gray-800">
+                    <p class="text-lg md:text-2xl leading-relaxed">
+                        "فكرتنا تنطلق من حاجة الناس لحلول صحية حديثة وذكية.
+                        منصة واحدة تجمع بين المريض، الطبيب، المستشفى، المتجر الصحي، والمجتمع، 
+                        وتستفيد من التقنيات الحديثة مثل الذكاء الاصطناعي وإنترنت الأشياء."
+                    </p>
+                </div>
+                <div class="flex flex-col md:flex-row justify-center gap-4 mt-6 md:mt-8">
+                    <button onclick="prevSlide()" class="btn-secondary text-lg md:text-xl px-6 md:px-8 py-3 md:py-4">← السابق</button>
+                    <button onclick="nextSlide()" class="btn-primary text-lg md:text-xl px-6 md:px-8 py-3 md:py-4">التالي ←</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- الشريحة 3: المشكلة -->
+        <div id="slide3" class="presentation-slide slide-bg-3 hidden">
+            <div class="text-center text-white max-w-4xl">
+                <h1 class="text-3xl md:text-5xl font-bold mb-8 md:mb-12">المشكلة</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                    <div class="glass-card rounded-2xl p-6 md:p-8">
+                        <div class="text-3xl md:text-4xl mb-3 md:mb-4">😰</div>
+                        <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-gray-800">صعوبة المتابعة</h3>
+                        <p class="text-gray-600 text-sm md:text-base">صعوبة متابعة الحالة الصحية بشكل يومي ودقيق</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 md:p-8">
+                        <div class="text-3xl md:text-4xl mb-3 md:mb-4">⏰</div>
+                        <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-gray-800">تأخر الوصول</h3>
+                        <p class="text-gray-600 text-sm md:text-base">تأخر الوصول للرعاية الطبية في الحالات الطارئة</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 md:p-8">
+                        <div class="text-3xl md:text-4xl mb-3 md:mb-4">💸</div>
+                        <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-gray-800">التكاليف العالية</h3>
+                        <p class="text-gray-600 text-sm md:text-base">ارتفاع تكاليف الرعاية الصحية والأدوية</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 md:p-8">
+                        <div class="text-3xl md:text-4xl mb-3 md:mb-4">📱</div>
+                        <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-gray-800">تشتت المعلومات</h3>
+                        <p class="text-gray-600 text-sm md:text-base">عدم وجود منصة موحدة للخدمات الصحية</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row justify-center gap-4 mt-6 md:mt-8">
+                    <button onclick="prevSlide()" class="btn-secondary text-lg md:text-xl px-6 md:px-8 py-3 md:py-4">← السابق</button>
+                    <button onclick="nextSlide()" class="btn-primary text-lg md:text-xl px-6 md:px-8 py-3 md:py-4">التالي ←</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- الشريحة 4: الحل -->
+        <div id="slide4" class="presentation-slide slide-bg-4 hidden">
+            <div class="text-center text-white max-w-4xl">
+                <h1 class="text-3xl md:text-5xl font-bold mb-8 md:mb-12">الحل</h1>
+                <div class="glass-card rounded-2xl p-8 md:p-12 text-gray-800 mb-6 md:mb-8">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8">منصة صحية ذكية متكاملة</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                        <div class="text-right">
+                            <h3 class="font-bold text-lg md:text-xl mb-3 md:mb-4">⌚ الساعة الطبية الذكية</h3>
+                            <p class="text-sm md:text-base text-gray-600">مراقبة مستمرة للعلامات الحيوية مع تنبيهات فورية</p>
+                        </div>
+                        <div class="text-right">
+                            <h3 class="font-bold text-lg md:text-xl mb-3 md:mb-4">🤖 الذكاء الاصطناعي</h3>
+                            <p class="text-sm md:text-base text-gray-600">تحليل البيانات وإعطاء توصيات طبية شخصية</p>
+                        </div>
+                        <div class="text-right">
+                            <h3 class="font-bold text-lg md:text-xl mb-3 md:mb-4">🚨 نظام الطوارئ</h3>
+                            <p class="text-sm md:text-base text-gray-600">استجابة سريعة مع تحديد الموقع وإرسال البيانات</p>
+                        </div>
+                        <div class="text-right">
+                            <h3 class="font-bold text-lg md:text-xl mb-3 md:mb-4">🏥 منصة موحدة</h3>
+                            <p class="text-sm md:text-base text-gray-600">ربط المريض والطبيب والمستشفى في مكان واحد</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row justify-center gap-4">
+                    <button onclick="prevSlide()" class="btn-secondary text-lg md:text-xl px-6 md:px-8 py-3 md:py-4">← السابق</button>
+                    <button onclick="nextSlide()" class="btn-primary text-lg md:text-xl px-6 md:px-8 py-3 md:py-4">التالي ←</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- الشريحة 5: الخاتمة -->
+        <div id="slide5" class="presentation-slide slide-bg-5 hidden">
+            <div class="text-center text-white max-w-4xl">
+                <h1 class="text-3xl md:text-5xl font-bold mb-8 md:mb-12">شكراً لكم</h1>
+                <div class="glass-card rounded-2xl p-8 md:p-12 text-gray-800 mb-6 md:mb-8">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8">🎯 رؤيتنا للمستقبل</h2>
+                    <p class="text-lg md:text-xl leading-relaxed mb-6 md:mb-8">
+                        "نسعى لجعل الرعاية الصحية أكثر ذكاءً وسهولة وفعالية للجميع.
+                        مستقبل صحي أفضل يبدأ اليوم مع التقنيات الذكية والابتكار المستمر."
+                    </p>
+                    <div class="text-center">
+                        <div class="text-4xl md:text-6xl mb-4 md:mb-6">🚀</div>
+                        <h3 class="text-xl md:text-2xl font-bold">مستقبلك الصحي بين يديك</h3>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row justify-center gap-4">
+                    <button onclick="prevSlide()" class="btn-secondary text-lg md:text-xl px-6 md:px-8 py-3 md:py-4">← السابق</button>
+                    <button onclick="goHome()" class="btn-primary text-lg md:text-xl px-6 md:px-8 py-3 md:py-4">العودة للرئيسية</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة تسجيل الدخول -->
+    <div id="loginPage" class="hidden min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl p-8 md:p-12 w-full max-w-md">
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-3xl">🏥</span>
+                </div>
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">مرحباً بك في صحتك</h1>
+                <p class="text-gray-600">سجل دخولك للوصول لحسابك الصحي</p>
+            </div>
+            
+            <form class="space-y-6">
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">البريد الإلكتروني أو رقم الجوال</label>
+                    <input type="text" class="w-full p-4 border border-gray-300 rounded-xl focus:border-blue-500 focus:outline-none transition-colors" placeholder="أدخل بريدك الإلكتروني أو رقم جوالك">
+                </div>
+                
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">كلمة المرور</label>
+                    <input type="password" class="w-full p-4 border border-gray-300 rounded-xl focus:border-blue-500 focus:outline-none transition-colors" placeholder="أدخل كلمة المرور">
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center">
+                        <input type="checkbox" class="ml-2">
+                        <span class="text-gray-600">تذكرني</span>
+                    </label>
+                    <button type="button" class="text-blue-600 hover:text-blue-800 font-semibold">نسيت كلمة المرور؟</button>
+                </div>
+                
+                <button type="submit" class="w-full btn-primary text-lg py-4">تسجيل الدخول</button>
+                
+                <div class="text-center">
+                    <span class="text-gray-600">ليس لديك حساب؟ </span>
+                    <button type="button" onclick="showRegister()" class="text-blue-600 hover:text-blue-800 font-semibold">إنشاء حساب جديد</button>
+                </div>
+            </form>
+            
+            <div class="mt-8 text-center">
+                <button onclick="goHome()" class="text-gray-500 hover:text-gray-700">← العودة للرئيسية</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة الطوارئ -->
+    <div id="emergencyPage" class="hidden min-h-screen bg-red-600 flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl p-8 md:p-12 w-full max-w-md text-center">
+            <div class="text-6xl md:text-8xl mb-6 md:mb-8 pulse-animation">🚨</div>
+            <h1 class="text-2xl md:text-3xl font-bold text-red-600 mb-4 md:mb-6">حالة طوارئ</h1>
+            <p class="text-gray-600 mb-6 md:mb-8">تم إرسال موقعك وبياناتك الطبية لأقرب مستشفى</p>
+            
+            <div class="bg-red-50 rounded-xl p-4 md:p-6 mb-6 md:mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="font-semibold text-red-800">🏥 أقرب مستشفى:</span>
+                    <span class="text-red-600">مستشفى الملك فهد</span>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <span class="font-semibold text-red-800">📍 المسافة:</span>
+                    <span class="text-red-600">2.3 كم</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="font-semibold text-red-800">⏱️ الوقت المتوقع:</span>
+                    <p class="text-yellow-600 text-sm">8-12 دقيقة</p>
+                </div>
+            </div>
+            
+            <div class="space-y-3">
+                <button onclick="goHome()" class="w-full btn-primary">إلغاء الطوارئ</button>
+                <p class="text-xs text-gray-500">في حالة الطوارئ الحقيقية، اتصل بـ 997</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة العرض التوضيحي -->
+    <div id="demoPage" class="hidden min-h-screen bg-gray-100 p-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-5xl font-bold mb-4 text-gray-800">العرض التوضيحي</h1>
+                <p class="text-lg md:text-xl text-gray-600">جرب المنصة الصحية الذكية</p>
+            </div>
+            
+            <div class="glass-card rounded-2xl p-6 md:p-8 mb-8">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">🎮 تجربة تفاعلية</h2>
+                <p class="text-gray-600 mb-6">هذا عرض توضيحي يوضح كيفية عمل المنصة الصحية الذكية. جميع البيانات المعروضة هي بيانات تجريبية.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-blue-50 p-6 rounded-xl">
+                        <h3 class="font-bold text-lg mb-3 text-blue-800">📊 لوحة تحكم المريض</h3>
+                        <p class="text-blue-600 text-sm mb-4">متابعة الحالة الصحية والأدوية والمواعيد</p>
+                        <button onclick="showLogin()" class="btn-primary w-full">جرب الآن</button>
+                    </div>
+                    
+                    <div class="bg-green-50 p-6 rounded-xl">
+                        <h3 class="font-bold text-lg mb-3 text-green-800">⌚ الساعة الذكية</h3>
+                        <p class="text-green-600 text-sm mb-4">مراقبة العلامات الحيوية والتنبيهات الطبية</p>
+                        <button onclick="showSection('watch')" class="btn-primary w-full">شاهد المميزات</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button onclick="goHome()" class="btn-secondary text-lg px-8 py-4">العودة للرئيسية</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="bg-gray-900 text-white py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+                <!-- معلومات المنصة -->
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center ml-3">
+                            <span class="text-2xl">🏥</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">صحتك</h3>
+                            <p class="text-gray-400 text-sm">المنصة الصحية الذكية</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        منصة متكاملة تجمع المريض والطبيب والمستشفى في مكان واحد مع الذكاء الاصطناعي لمستقبل صحي أفضل.
+                    </p>
+                </div>
+
+                <!-- روابط سريعة -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">روابط سريعة</h4>
+                    <ul class="space-y-3">
+                        <li><button onclick="showSection('features')" class="text-gray-300 hover:text-blue-400 transition-colors text-sm">المميزات</button></li>
+                        <li><button onclick="showSection('watch')" class="text-gray-300 hover:text-blue-400 transition-colors text-sm">الساعة الذكية</button></li>
+                        <li><button onclick="showSection('presentation')" class="text-gray-300 hover:text-blue-400 transition-colors text-sm">العرض التقديمي</button></li>
+                        <li><button onclick="showLogin()" class="text-gray-300 hover:text-blue-400 transition-colors text-sm">تسجيل الدخول</button></li>
+                        <li><button onclick="showMedicalAssistant()" class="text-gray-300 hover:text-blue-400 transition-colors text-sm">🤖 المساعد الطبي</button></li>
+                        <li><button onclick="showEmergency()" class="text-gray-300 hover:text-blue-400 transition-colors text-sm">الطوارئ</button></li>
+                    </ul>
+                </div>
+
+                <!-- الفريق -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">فريق العمل</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <span class="text-blue-400 ml-2">👨‍💻</span>
+                            <span class="text-gray-300 text-sm">مشاري ناجي - القائد والمبرمج</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-400 ml-2">💡</span>
+                            <span class="text-gray-300 text-sm">فراس عبدالسلام - مطور الأفكار</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-purple-400 ml-2">✍️</span>
+                            <span class="text-gray-300 text-sm">مازن خورشيد - كاتب المحتوى</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-yellow-400 ml-2">🤝</span>
+                            <span class="text-gray-300 text-sm">فريق الدعم - المساهمون</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- معلومات التواصل -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">تواصل معنا</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <span class="text-blue-400 text-xl ml-3">📧</span>
+                            <span class="text-gray-300 text-sm">info@sahtak.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-green-400 text-xl ml-3">📱</span>
+                            <span class="text-gray-300 text-sm">+966 50 123 4567</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-red-400 text-xl ml-3">🚨</span>
+                            <span class="text-gray-300 text-sm">طوارئ: 997</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-purple-400 text-xl ml-3">📍</span>
+                            <span class="text-gray-300 text-sm">الرياض، المملكة العربية السعودية</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- خط الفصل -->
+            <div class="border-t border-gray-700 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-gray-400 text-sm mb-4 md:mb-0">
+                        © 2024 صحتك - المنصة الصحية الذكية. جميع الحقوق محفوظة.
+                    </div>
+                    <div class="flex space-x-6">
+                        <button class="text-gray-400 hover:text-blue-400 transition-colors text-sm">سياسة الخصوصية</button>
+                        <button class="text-gray-400 hover:text-blue-400 transition-colors text-sm">الشروط والأحكام</button>
+                        <button onclick="showSection('team')" class="text-gray-400 hover:text-blue-400 transition-colors text-sm">عن الفريق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function showSection(section) {
+            // إخفاء جميع الأقسام
+            hideAllSections();
+            
+            // إظهار القسم المطلوب
+            if (section === 'features') {
+                document.getElementById('featuresSection').classList.remove('hidden');
+            } else if (section === 'watch') {
+                document.getElementById('watchSection').classList.remove('hidden');
+            } else if (section === 'presentation') {
+                document.getElementById('presentationSection').classList.remove('hidden');
+                currentSlide = 1;
+                showSlide(1);
+            } else if (section === 'team') {
+                document.getElementById('teamSection').classList.remove('hidden');
+            }
+        }
+
+        function showMedicalAssistant() {
+            hideAllSections();
+            document.getElementById('medicalAssistantPage').classList.remove('hidden');
+            
+            // التمرير إلى أسفل منطقة الرسائل لإظهار المحادثة
+            setTimeout(() => {
+                const messagesContainer = document.getElementById('chatMessages');
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 100);
+        }
+
+        function hideAllSections() {
+            const sections = [
+                'homePage', 'featuresSection', 'watchSection', 'presentationSection', 
+                'teamSection', 'loginPage', 'emergencyPage', 'demoPage', 'medicalAssistantPage'
+            ];
+            
+            sections.forEach(sectionId => {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    element.classList.add('hidden');
+                }
+            });
+        }
+
+        function showLogin() {
+            hideAllSections();
+            document.getElementById('loginPage').classList.remove('hidden');
+        }
+
+        function showRegister() {
+            showLogin(); // نفس صفحة تسجيل الدخول للتبسيط
+        }
+
+        function showEmergency() {
+            hideAllSections();
+            document.getElementById('emergencyPage').classList.remove('hidden');
+        }
+
+        function showDemo() {
+            hideAllSections();
+            document.getElementById('demoPage').classList.remove('hidden');
+        }
+
+        function showWatchDemo() {
+            alert('🎉 مرحباً بك في عرض الساعة الذكية!\n\n⌚ الساعة تعرض الآن:\n❤️ معدل النبض: 72 نبضة/دقيقة\n🩸 ضغط الدم: 120/80\n🌡️ درجة الحرارة: 37°C\n\n💡 هذه بيانات تجريبية لتوضيح إمكانيات الساعة الطبية الذكية');
+        }
+
+        function goHome() {
+            hideAllSections();
+            document.getElementById('homePage').classList.remove('hidden');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu.style.right === '0px' || menu.style.right === '') {
+                menu.style.right = '-100%';
+            } else {
+                menu.style.right = '0px';
+            }
+        }
+
+        function showSlide(slideNumber) {
+            // إخفاء جميع الشرائح
+            for (let i = 1; i <= totalSlides; i++) {
+                const slide = document.getElementById('slide' + i);
+                if (slide) {
+                    slide.classList.add('hidden');
+                }
+            }
+            
+            // إظهار الشريحة المطلوبة
+            const targetSlide = document.getElementById('slide' + slideNumber);
+            if (targetSlide) {
+                targetSlide.classList.remove('hidden');
+            }
+            
+            currentSlide = slideNumber;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // وظائف المساعد الطبي
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message === '') return;
+            
+            // إضافة رسالة المستخدم
+            addMessage(message, 'user');
+            input.value = '';
+            
+            // إظهار مؤشر الكتابة
+            showTypingIndicator();
+            
+            // محاكاة رد المساعد الطبي
+            setTimeout(() => {
+                hideTypingIndicator();
+                
+                // ردود تلقائية بسيطة
+                let response = getAssistantResponse(message);
+                addMessage(response, 'assistant');
+            }, 2000);
+        }
+
+        function addMessage(text, sender) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            const avatar = sender === 'user' ? '👤' : '🤖';
+            const alignment = sender === 'user' ? 'flex items-end' : 'flex items-end justify-end';
+            
+            messageDiv.innerHTML = `
+                <div class="${alignment}">
+                    ${sender === 'user' ? `<div class="message-avatar">${avatar}</div>` : ''}
+                    <div class="message-bubble">${text}</div>
+                    ${sender === 'assistant' ? `<div class="message-avatar">${avatar}</div>` : ''}
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const messagesContainer = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.id = 'typingIndicator';
+            
+            typingDiv.innerHTML = `
+                <div class="flex items-end justify-end">
+                    <div class="typing-indicator">
+                        <div class="typing-dots">
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                        </div>
+                    </div>
+                    <div class="message-avatar">🤖</div>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function getAssistantResponse(message) {
+            const responses = {
+                'مرحبا': 'مرحباً بك! أنا المساعد الطبي الذكي، كيف يمكنني مساعدتك اليوم؟',
+                'كيف حالك': 'أنا بخير وجاهز لمساعدتك في أي استفسار طبي. كيف يمكنني خدمتك؟',
+                'ما هي الساعة الذكية': 'الساعة الطبية الذكية هي جهاز متطور يراقب العلامات الحيوية مثل النبض وضغط الدم والأكسجين على مدار الساعة، وترسل تنبيهات فورية في حالة وجود أي خلل.',
+                'كيف تعمل': 'أعمل بالذكاء الاصطناعي لتحليل بياناتك الصحية من الساعة الذكية وأقدم لك نصائح طبية شخصية وتنبيهات مبكرة للمشاكل الصحية المحتملة.',
+                'الطوارئ': 'في حالة الطوارئ، اضغط على زر SOS في الساعة الذكية أو في التطبيق، وسيتم إرسال موقعك وبياناتك الطبية فوراً لأقرب مستشفى. للطوارئ الحقيقية اتصل بـ 997.',
+                'الأدوية': 'يمكنني تذكيرك بمواعيد الأدوية وتتبع جرعاتك. كما يمكنني تحليل تفاعل الأدوية مع حالتك الصحية الحالية.',
+                'النوم': 'الساعة الذكية تراقب جودة نومك ومراحله المختلفة، وأقدم لك نصائح لتحسين نومك بناءً على البيانات المجمعة.',
+                'الرياضة': 'أساعدك في وضع برنامج رياضي مناسب لحالتك الصحية ومراقبة نشاطك البدني من خلال الساعة الذكية.',
+                'default': 'شكراً لسؤالك. أنا هنا لمساعدتك في جميع الاستفسارات الطبية. يمكنك سؤالي عن الساعة الذكية، الأدوية، النوم، الرياضة، أو أي موضوع صحي آخر.'
+            };
+            
+            // البحث عن كلمات مفتاحية في الرسالة
+            const lowerMessage = message.toLowerCase();
+            
+            for (let key in responses) {
+                if (lowerMessage.includes(key)) {
+                    return responses[key];
+                }
+            }
+            
+            return responses['default'];
+        }
+
+        // إضافة تأثيرات تفاعلية
+        document.addEventListener('DOMContentLoaded', function() {
+            // تأثير الكتابة للعنوان الرئيسي
+            const title = document.querySelector('h1');
+            if (title) {
+                title.classList.add('typewriter');
+            }
+            
+            // تحديث الوقت في الساعة الذكية
+            setInterval(function() {
+                const heartRate = Math.floor(Math.random() * (80 - 65) + 65);
+                const watchScreens = document.querySelectorAll('.watch-screen');
+                watchScreens.forEach(screen => {
+                    const heartElement = screen.querySelector('div');
+                    if (heartElement && heartElement.textContent.includes('❤️')) {
+                        heartElement.textContent = `❤️ ${heartRate}`;
+                    }
+                });
+            }, 3000);
+        });
+
+        // إضافة مستمعي الأحداث للوحة المفاتيح
+        document.addEventListener('keydown', function(event) {
+            if (document.getElementById('presentationSection').classList.contains('hidden')) return;
+            
+            if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+                prevSlide();
+            } else if (event.key === 'Escape') {
+                goHome();
+            }
+        });
+    </script>
+</body>
+</html>
